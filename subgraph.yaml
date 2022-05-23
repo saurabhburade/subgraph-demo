@@ -1,0 +1,27 @@
+specVersion: 0.0.2
+description: Gravatar for Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: AAVE
+    network: mainnet
+    source:
+      address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
+      abi: AaveToken
+      startBlock: 10926828
+
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Transaction
+      abis:
+        - name: AaveToken
+          file: ./abis/AaveToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransferGravatar
+      file: ./src/mapping.ts

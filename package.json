@@ -1,0 +1,24 @@
+{
+  "name": "intro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
+    "create": "graph create example --node https://api.thegraph.com/deploy/",
+    "create-local": "graph create example --node http://127.0.0.1:8020",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --product hosted-service ",
+    "deploy-local": "graph deploy example --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
+    "deploy-staging": "graph deploy --product hosted-service  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ saurabhburade/intro-subgraph --access-token 9acec9001d7b4c398fc4c796d6c26879 --debug"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.28.1",
+    "@graphprotocol/graph-ts": "^0.26.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0"
+  }
+}
