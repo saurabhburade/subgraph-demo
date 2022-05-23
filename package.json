@@ -9,9 +9,10 @@
     "create-local": "graph create example --node http://127.0.0.1:8020",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --product hosted-service ",
+
     "deploy-local": "graph deploy example --ipfs http://127.0.0.1:5001 --node http://127.0.0.1:8020",
-    "deploy-staging": "graph deploy --product hosted-service  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ saurabhburade/intro-subgraph --access-token 9acec9001d7b4c398fc4c796d6c26879 --debug"
+    "deploy": "graph deploy --product hosted-service  --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ saurabhburade/intro-subgraph --access-token 9acec9001d7b4c398fc4c796d6c26879 --debug",
+    "deploy-staging": "graph deploy --ipfs https://api.staging.thegraph.com/ipfs/ --node https://api.staging.thegraph.com/deploy/ saurabhburade/intro-subgraph --access-token 9acec9001d7b4c398fc4c796d6c26879 --debug"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.28.1",

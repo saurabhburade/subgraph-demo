@@ -5,23 +5,47 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: AAVE
-    network: mainnet
+    name: TokensTracker
+    network: mumbai
     source:
-      address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
-      abi: AaveToken
-      startBlock: 10926828
-
+      address: '0x9558CE2f9aF28425e0d895b5220aFF2A6dE19782'
+      abi: TokensTracker
+      startBlock: 26426910
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - Transaction
+        - Token
+      abis:
+        - name: TokensTracker
+          file: ./abis/TokensTracker.json
+        - name: ERC20
+          file: ./abis/Aave.json
+      eventHandlers:
+        - event: AddAddress(address)
+          handler: handleAddToken
+      
+      file: ./src/mapping.ts
+templates:
+  - kind: ethereum/contract
+    name: Token
+    network: mumbai
+    source:
+      abi: AaveToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+  
+        - Token
       abis:
         - name: AaveToken
           file: ./abis/AaveToken.json
+   
       eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransferGravatar
-      file: ./src/mapping.ts
+         - event:  Transfer(indexed address,indexed address,uint256)
+           handler: handleTransfer
+ 

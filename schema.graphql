@@ -1,6 +1,18 @@
-
 type Transaction @entity {
   id: ID!
   from: String!
   to: String!
+  amount: BigInt
+  address: String!
+  blockNumber: BigInt
+  timeStamp: String!
+  hash: String
+  nounce: Int
+}
+
+type Token @entity {
+  id: ID!
+  address: String!
+  totalSupply: BigInt
+  transaction: [Transaction!]
 }
