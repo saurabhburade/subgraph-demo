@@ -2,10 +2,13 @@ import { ERC20 } from "./../generated/TokensTracker/ERC20";
 import { Token } from "./../generated/schema";
 import { AddAddress } from "./../generated/TokensTracker/TokensTracker";
 import { BigInt, log } from "@graphprotocol/graph-ts";
-import { Transfer, Transfer__Params } from "../generated/Aave/AaveToken";
+// import { Transfer, Transfer__Params } from "../generated/Aave/AaveToken";
 import { NewGravatar, UpdatedGravatar } from "../generated/Gravity/Gravity";
 import { Transaction } from "../generated/schema";
-import { AaveToken as TokenClass } from "../generated/templates/Token/AaveToken";
+import {
+  AaveToken as TokenClass,
+  Transfer,
+} from "../generated/templates/AaveToken/AaveToken";
 
 // export function handleNewGravatar(event: NewGravatar): void {
 //   let gravatar = new Gravatar(event.params.id.toHex());
@@ -46,6 +49,7 @@ export function handleAddToken(event: AddAddress): void {
   // new TokenClass(event.params._tokenAddress.toHex());
   // TokenClass.bind(event.params._tokenAddress);
 //  const token = new TokenClass(event.params._tokenAddress)
+ TokenClass.bind(event.params._tokenAddress)
   newToken.totalSupply = _totalSupply;
   newToken.save();
 }
